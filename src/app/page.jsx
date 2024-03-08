@@ -1,13 +1,14 @@
 'use client';
 import { sosialLinks } from '@/utils/static';
 import Image from 'next/image';
+import Link from 'next/link';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { TypeAnimation } from 'react-type-animation';
 
 const Home = () => {
   return (
-    <section className="flex items-center justify-between  ">
-      <div className="flex flex-col gap-10 mt-20 lg:mt-52">
+    <section className="flex items-center justify-between flex-col lg:flex-row">
+      <div className="flex flex-col gap-5 lg:gap-10 mt-0 lg:mt-52">
         <h1 className="font-semibold">Hi ! I'm</h1>
         <TypeAnimation
           sequence={[
@@ -23,7 +24,7 @@ const Home = () => {
           wrapper="span"
           cursor={true}
           repeat={Infinity}
-          className="text-3xl lg:text-6xl"
+          className="text-xl lg:text-6xl"
         />
         <h2 className="font-bold text-6xl"></h2>
         <p className="max-w-lg font-extralight leading-6">
@@ -31,24 +32,24 @@ const Home = () => {
           framework.
         </p>
 
-        <button className="font-bold text-white/100 text-3xl self-start flex flex-col items-center gap-2 z-20 " type="button">
+        <div className="lg:absolute flex lg:flex-col gap-5  lg:left-20 left-5 bottom-52 self-start ">
+          {sosialLinks.map((social) => {
+            return (
+              <a href={social.url} key={social.name} target="_blank" className="hover:scale-110">
+                <Image src={social.image} height={30} width={30} alt={`${social.name} logo`} />
+              </a>
+            );
+          })}
+        </div>
+
+        <Link href="/profile" className="font-bold text-white/100 text-3xl self-start flex flex-col items-center gap-2 z-20 " type="button">
           Explore
           <TiArrowSortedDown className="w-14 h-14 text-white animate-bounce " />
-        </button>
+        </Link>
       </div>
 
       <div className="hidden 2xl:block">
         <Image src="/hero.png" height={500} width={500} alt="hero images" className=" absolute bottom-0 right-0 mr-24 -mb-20 " />
-      </div>
-
-      <div className="absolute flex lg:flex-col gap-5  lg:left-20 left-5 bottom-52">
-        {sosialLinks.map((social) => {
-          return (
-            <a href={social.url} key={social.name} target="_blank" className="hover:scale-110">
-              <Image src={social.image} height={35} width={35} alt={`${social.name} logo`} />
-            </a>
-          );
-        })}
       </div>
     </section>
   );

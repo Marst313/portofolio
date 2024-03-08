@@ -1,13 +1,31 @@
-import './css/globals.css';
-import './css/component.css';
+import './style/globals.css';
+import './style/component.css';
 
-import Cascadia_Code from 'next/font/local';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import Background from '@/components/background/Background';
 import Particle from '@/components/particle/Particle';
+import localFont from 'next/font/local';
 
-const inter = Cascadia_Code({ src: './font/Cascadia_code.ttf' });
+const cascadia = localFont({
+  src: [
+    {
+      path: './style/fonts/CascadiaCode-ExtraLight.ttf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: './style/fonts/CascadiaCode-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './style/fonts/CascadiaCode-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+});
 
 export const metadata = {
   title: 'I Nyoman Dharma',
@@ -16,7 +34,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={cascadia.className}>
       <body>
         <Particle />
 

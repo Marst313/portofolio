@@ -39,3 +39,61 @@ export const sosialLinks = [
     image: '/sosial/instagram.svg',
   },
 ];
+
+export const typeWeb = [
+  {
+    name: 'All',
+  },
+  {
+    name: 'Landing Page',
+  },
+  {
+    name: 'Web App',
+  },
+  {
+    name: 'Online Store',
+  },
+];
+
+export const skills = [
+  {
+    images: '/assets/skills/bootstrap.svg',
+    name: 'bootstrap',
+  },
+  {
+    images: '/assets/skills/css.svg',
+    name: 'css',
+  },
+  {
+    images: '/assets/skills/express.svg',
+    name: 'express',
+  },
+  {
+    images: '/assets/skills/javascript.svg',
+    name: 'javascript',
+  },
+  {
+    images: '/assets/skills/mongodb.svg',
+    name: 'mongodb',
+  },
+  {
+    images: '/assets/skills/html.svg',
+    name: 'html',
+  },
+  {
+    images: '/assets/skills/nodejs.svg',
+    name: 'nodejs',
+  },
+  {
+    images: '/assets/skills/react.svg',
+    name: 'react',
+  },
+  {
+    images: '/assets/skills/redux.svg',
+    name: 'redux',
+  },
+  {
+    images: '/assets/skills/tailwindcss.svg',
+    name: 'tailwindcss',
+  },
+];

@@ -12,7 +12,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
     <nav
       className={`${
         sidebarOpen ? 'flex' : 'hidden md:flex'
-      }  gap-6 flex-col text-center absolute left-0 top-0 bg-black/30 backdrop-blur-sm h-screen w-screen pt-[25%] md:h-auto md:bg-transparent md:backdrop-blur-none md:relative md:pt-0 md:flex-row md:w-auto  z-10`}
+      }  gap-6 flex-col text-center absolute left-0 top-0 bg-black/30 backdrop-blur-sm h-screen w-screen pt-[25%] md:h-auto md:bg-transparent md:backdrop-blur-none md:relative md:pt-0 md:flex-row md:w-auto  z-[60]`}
     >
       {links.map((link) => {
         return (

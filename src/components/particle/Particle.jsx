@@ -82,7 +82,7 @@ const Particle = () => {
   );
 
   if (init) {
-    return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="z-0" />;
+    return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="-z-0" />;
   }
 
   return <></>;
