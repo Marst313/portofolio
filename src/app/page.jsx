@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { TypeAnimation } from 'react-type-animation';
 const Home = () => {
+  console.log('test');
   return (
     <section className="flex items-center justify-between flex-col lg:flex-row">
       <div className="flex flex-col gap-5 lg:gap-10 mt-0 lg:mt-52">
