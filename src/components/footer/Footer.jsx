@@ -33,6 +33,7 @@ const Footer = () => {
     router.push(newPath);
   };
 
+  console.log('hello');
   return (
     <footer>
       <section className="fixed bottom-5 lg:bottom-10 p-0 flex w-full justify-start scroll-pt-52">
