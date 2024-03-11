@@ -35,15 +35,15 @@ const Footer = () => {
 
   return (
     <footer>
-      <section className="fixed bottom-5 lg:bottom-10 p-0 flex w-full justify-start">
+      <section className="fixed bottom-5 lg:bottom-10 p-0 flex w-full justify-start scroll-pt-52">
         {/* Arrow Button */}
-        <div className="hidden md:flex gap-7 w-[45%]">
+        <div className="flex gap-7 w-[45%]">
           <button type="button" onClick={handlePreviousPage}>
-            <GoArrowLeft className="h-8 w-8 hover:scale-105 transition-all " />
+            <GoArrowLeft className="h-8 w-8 hover:scale-105 transition-all bg-black/50 " />
           </button>
 
           <button type="button" onClick={handleNextPage}>
-            <GoArrowRight className="h-8 w-8 hover:scale-105" />
+            <GoArrowRight className="h-8 w-8 hover:scale-105 bg-black/50 " />
           </button>
         </div>
 

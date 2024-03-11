@@ -30,7 +30,7 @@ const Cards = ({ data, currentProject, setCurrentProject }) => {
 
         return (
           <li key={project.id} className={`${index === currentProject ? 'card-active' : index === nextProject ? 'card-next' : index === prevProject ? 'card-prev' : 'opacity-0 hidden'} `}>
-            <Image src={fields?.images[1].url} alt="arrow right" width={400} height={400} className="w-full shadow-lg" />
+            <Image src={fields?.images[1].url} alt={fields.name} width={400} height={400} className="w-full shadow-lg" />
 
             {/* Title */}
             <div className="card-title">
