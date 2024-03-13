@@ -49,7 +49,7 @@ const Profile = () => {
           innovative and user-friendly websites. My academic journey at Amikom has equipped me with a strong foundation in computer science, providing me with the skills and knowledge necessary to excel in the dynamic field of web
           development.
         </p>
-        <a href="/assets/KTM.pdf" download="CV.pdf" className="z-50 flex flex-col items-center mt-5 gap-2 text-4xl font-semibold">
+        <a href="/assets/CV.pdf" download="CV.pdf" className="z-50 flex flex-col items-center mt-5 gap-2 text-4xl font-semibold">
           <button type="button">Download CV</button>
           <MdFileDownload className="w-6 h-6 " />
         </a>
