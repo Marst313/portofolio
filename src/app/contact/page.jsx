@@ -2,6 +2,11 @@ import { sosialLinks } from '@/utils/static';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import Image from 'next/image';
 
+export const metadata = {
+  title: 'Contact Page',
+  description: 'Contact description',
+};
+
 const Contact = () => {
   return (
     <section className=" flex pt-0 xl:pt-5 flex-col">

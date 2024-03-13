@@ -28,7 +28,10 @@ const cascadia = localFont({
 });
 
 export const metadata = {
-  title: 'I Nyoman Dharma',
+  title: {
+    default: 'I Nyoman Dharma - Website Developer',
+    template: '%s | I Nyoman Dharma',
+  },
   description: 'Portofolio Created With Next Js',
 };
 

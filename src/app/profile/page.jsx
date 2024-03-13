@@ -1,8 +1,12 @@
-'use client';
 import { getRotationClass } from '@/utils/function';
 import { skills } from '@/utils/static';
 import Image from 'next/image';
 import { MdFileDownload } from 'react-icons/md';
+
+export const metadata = {
+  title: 'Profile Page',
+  description: 'Profile description',
+};
 
 const Profile = () => {
   const handleClick = () => {
