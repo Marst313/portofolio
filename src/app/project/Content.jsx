@@ -18,7 +18,6 @@ const Content = () => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    console.log('contoh');
   };
 
   // ! Debounce
