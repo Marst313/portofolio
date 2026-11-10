@@ -1,63 +1,101 @@
-import { sosialLinks } from '@/utils/static';
-import { FaArrowRightLong } from 'react-icons/fa6';
-import Image from 'next/image';
+import { PiArrowUpRightLight, PiEnvelopeSimpleLight, PiFacebookLogoLight, PiGithubLogoLight, PiInstagramLogoLight, PiLinkedinLogoLight } from 'react-icons/pi';
+
+import ContactForm from '@/components/contact/ContactForm';
+import CopyEmail from '@/components/contact/CopyEmail';
+import { contactEmail, sosialLinks } from '@/utils/static';
 
 export const metadata = {
-  title: 'Contact Page',
-  description: 'Contact description',
+  title: 'Contact',
+  description: 'Get in touch with I Nyoman Dharma about a website, web app or collaboration.',
+};
+
+const channelMeta = {
+  linkedin: { label: 'LinkedIn', handle: 'I Nyoman Karma Dharma', Icon: PiLinkedinLogoLight },
+  github: { label: 'GitHub', handle: '@Marst313', Icon: PiGithubLogoLight },
+  instagram: { label: 'Instagram', handle: '@inyoman_dharma', Icon: PiInstagramLogoLight },
+  facebook: { label: 'Facebook', handle: 'dharmarst', Icon: PiFacebookLogoLight },
 };
 
 const Contact = () => {
   return (
-    <section className=" flex pt-0 xl:pt-5 flex-col">
-      <h1 className="font-bold xl:text-5xl">Contact Me</h1>
+    <>
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-14 px-4 pb-40 pt-28 md:px-8 md:pt-36 lg:grid-cols-12 lg:gap-12">
+        {/* Left: editorial copy + channels */}
+        <div className="flex flex-col lg:col-span-5">
+          <h1 className="animate-rise text-5xl font-bold leading-[0.95] tracking-tight [animation-delay:80ms] md:text-7xl">
+            Let&apos;s build
+            <br />
+            something
+            <span className="text-ember"> good</span>
+          </h1>
 
-      <div className="flex gap-5 mt-2 lg:mt-5  z-50 relative ">
-        {sosialLinks.map((social) => {
-          return (
-            <a href={social.url} key={social.name} target="_blank" className="hover:scale-110 w-6 h-6 xl:w-7 xl:h-7">
-              <Image src={social.image} height={30} width={30} alt={`${social.name} logo`} />
-            </a>
-          );
-        })}
-      </div>
+          <p className="mt-6 max-w-md animate-rise text-sm font-extralight leading-relaxed text-white/60 [animation-delay:160ms] md:text-base">
+            Have a project, a role, or just an idea you want to talk through? Send a message and I&apos;ll get back to you by email.
+          </p>
 
-      <div className="self-center mt-2 lg:mt-8 bg-white/30 p-5 lg:p-10 relative w-full 2xl:w-[70%] rounded-md  flex gap-2 lg:gap-10 flex-col xl:flex-row ">
-        <Image src="/assets/contact/top.svg" height={100} width={120} alt="images-decoration-top" className="absolute top-0 right-0 hidden md:block -z-10" />
-        <Image src="/assets/contact/bottom.svg" height={100} width={150} alt="images-decoration-bottom" className="absolute bottom-0 right-0 hidden md:block -z-10" />
+          {/* Primary channel */}
+          <div className="mt-10 animate-rise rounded-[1.75rem] bg-white/[0.03] p-1.5 ring-1 ring-white/[0.08] [animation-delay:240ms]">
+            <div className="group relative flex items-center gap-4 rounded-[calc(1.75rem-0.375rem)] bg-[#120909] p-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ember/15 text-ember-soft ring-1 ring-ember/30">
+                <PiEnvelopeSimpleLight className="h-5 w-5" />
+              </span>
 
-        <div className="xl:w-1/2 w-full">
-          <div className="flex items-center gap-5">
-            <Image src="/assets/contact/email.svg" height={40} width={40} alt="email icon" className="w-7 lg:w-10" />
-            <h1 className="text-base lg:text-2xl">Get In Touch</h1>
+              <a href={`mailto:${contactEmail}`} className="min-w-0 flex-1 after:absolute after:inset-0 after:rounded-[inherit] after:content-['']">
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-white/60">Email</span>
+                <span className="block truncate text-sm transition-colors duration-500 ease-spring group-hover:text-ember-soft md:text-base">{contactEmail}</span>
+              </a>
+
+              <CopyEmail email={contactEmail} />
+            </div>
           </div>
 
-          <form className="lg:mt-10 mt-2 w-full  flex flex-col gap-5">
-            <input type="text" className="xl:w-96 w-full shadow-lg h-10 p-5 text-black outline-blue-300 " placeholder="Your Name" />
-            <input type="email" className="xl:w-96 w-full shadow-lg h-10 p-5 text-black outline-blue-300" placeholder="Email Address" />
-            <textarea className="xl:w-96 w-full lg:h-52 outline-blue-300 p-5 text-black" placeholder="Message" />
-            <button type="button" className="xl:w-96 w-full bg-blue-600 py-2 lg:py-3 font-semibold flex items-center justify-center gap-5 hover:bg-blue-700">
-              Send Now
-              <FaArrowRightLong className="w-7 h-7" />
-            </button>
-          </form>
+          {/* Social channels */}
+          <ul className="mt-3 grid animate-rise grid-cols-1 gap-2 [animation-delay:320ms] sm:grid-cols-2">
+            {sosialLinks.map(({ name, url }) => {
+              const meta = channelMeta[name];
+              if (!meta) return null;
+              const { Icon, label, handle } = meta;
+
+              return (
+                <li key={name}>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group flex items-center gap-3 rounded-2xl bg-white/[0.02] p-3 ring-1 ring-white/[0.06] transition-all duration-500 ease-spring hover:bg-white/[0.05] hover:ring-white/[0.14] active:scale-[0.98]"
+                  >
+                    <Icon className="h-5 w-5 shrink-0 text-white/60 transition-colors duration-500 ease-spring group-hover:text-white" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-xs">{label}</span>
+                      <span className="block truncate text-[11px] font-extralight text-white/60">{handle}</span>
+                    </span>
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/[0.05] transition-transform duration-500 ease-spring group-hover:-translate-y-px group-hover:translate-x-0.5 group-hover:scale-105">
+                      <PiArrowUpRightLight className="h-3.5 w-3.5" />
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
-        <div className="h-64 w-[1px] bg-white items-center self-center rounded-full hidden xl:block"></div>
+        {/* Right: form in double-bezel */}
+        <div className="animate-rise [animation-delay:200ms] lg:col-span-7 lg:pt-4">
+          <div className="rounded-[2rem] bg-white/[0.03] p-1.5 ring-1 ring-white/[0.08]">
+            <div className="rounded-[calc(2rem-0.375rem)] bg-[#120909] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] md:p-10">
+              <div className="mb-8 flex items-start justify-between gap-6">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Send a message</h2>
+                  <p className="mt-2 text-sm font-extralight text-white/60">All three fields are needed so I can reply properly.</p>
+                </div>
+              </div>
 
-        <ul className="w-1/2 flex flex-col items-start justify-center gap-5">
-          <li className="flex items-center gap-3">
-            <Image src="/assets/contact/gmail.svg" height={40} width={40} alt="email icon" />
-            <h5>dlegoinyoman1@gmail.com</h5>
-          </li>
-
-          <li className="flex items-center gap-3">
-            <Image src="/assets/contact/instagram.svg" height={40} width={40} alt="email icon" />
-            <h5>@inyoman_dharma</h5>
-          </li>
-        </ul>
+              <ContactForm to={contactEmail} />
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </>
   );
 };
 

@@ -15,6 +15,10 @@ export const links = [
     title: 'Project',
     path: '/project',
   },
+  {
+    title: 'Blog',
+    path: '/blog',
+  },
 ];
 
 export const sosialLinks = [
@@ -55,45 +59,40 @@ export const typeWeb = [
   },
 ];
 
-export const skills = [
+// Skill groups shown on /profile. `icon` maps to /public/assets/skills/<icon>.svg
+const item = (name, icon) => ({ name, images: `/assets/skills/${icon}.svg` });
+
+export const skillGroups = [
   {
-    images: '/assets/skills/bootstrap.svg',
-    name: 'bootstrap',
+    title: 'Languages',
+    items: [item('HTML', 'html'), item('CSS', 'css'), item('JavaScript', 'javascript'), item('Node.js', 'nodejs'), item('Golang', 'golang'), item('PHP', 'php')],
   },
   {
-    images: '/assets/skills/css.svg',
-    name: 'css',
+    title: 'Frameworks & Libraries',
+    items: [
+      item('React', 'react'),
+      item('Next.js', 'nextjs'),
+      item('Vue', 'vue'),
+      item('Angular', 'angular'),
+      item('Express', 'express'),
+      item('Laravel', 'laravel'),
+      item('Gin', 'gin'),
+      item('Redux', 'redux'),
+      item('Tailwind CSS', 'tailwindcss'),
+      item('Bootstrap', 'bootstrap'),
+    ],
   },
   {
-    images: '/assets/skills/express.svg',
-    name: 'express',
+    title: 'Databases',
+    items: [item('MySQL', 'mysql'), item('PostgreSQL', 'postgresql'), item('MongoDB', 'mongodb')],
   },
   {
-    images: '/assets/skills/javascript.svg',
-    name: 'javascript',
-  },
-  {
-    images: '/assets/skills/mongodb.svg',
-    name: 'mongodb',
-  },
-  {
-    images: '/assets/skills/html.svg',
-    name: 'html',
-  },
-  {
-    images: '/assets/skills/nodejs.svg',
-    name: 'nodejs',
-  },
-  {
-    images: '/assets/skills/react.svg',
-    name: 'react',
-  },
-  {
-    images: '/assets/skills/redux.svg',
-    name: 'redux',
-  },
-  {
-    images: '/assets/skills/tailwindcss.svg',
-    name: 'tailwindcss',
+    title: 'Tools',
+    items: [item('Docker', 'docker'), item('Linux', 'linux'), item('Nginx', 'nginx'), item('Postman', 'postman')],
   },
 ];
+
+export const contactEmail = 'dlegoinyoman1@gmail.com';
+
+// Production URL, used for canonical links, Open Graph and the sitemap.
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portofolio-marst313.vercel.app';

@@ -2,23 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: rgb(149, 1, 1);
-  background: linear-gradient(140deg, rgba(149, 1, 1, 1) 0%, rgba(50, 46, 46, 1) 40%, rgba(50, 46, 46, 1) 50%, rgba(61, 0, 0, 1) 100%);
-  color: #ffffff;
-  @apply h-screen 2xl:overflow-hidden;
+/* Metric-matched stand-in for Cascadia Code while the webfont loads.
+   Cascadia: advance 1200/2048 = 0.586em, ascent 0.928em, descent 0.234em.
+   Menlo / Courier New advance ≈ 0.602em → size-adjust 97.3%. */
+@font-face {
+  font-family: 'Cascadia Fallback';
+  src: local('Menlo'), local('Consolas'), local('Courier New'), local('DejaVu Sans Mono'), local('Roboto Mono');
+  size-adjust: 97.3%;
+  ascent-override: 95.3%;
+  descent-override: 24.1%;
+  line-gap-override: 0%;
 }
 
-header {
-  @apply flex justify-between;
+body {
+  background: #0a0606;
+  color: #ffffff;
+  -webkit-tap-highlight-color: transparent;
+  @apply min-h-[100dvh] overflow-x-hidden;
 }
 
 h1 {
   @apply text-2xl font-medium;
 }
 
-footer,
-section,
-header {
+/* Legacy pages (loading / not-found) still rely on section padding. */
+section {
   @apply p-5 lg:px-52;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(255, 122, 69, 0.8);
+  outline-offset: 3px;
 }

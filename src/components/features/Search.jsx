@@ -1,10 +1,34 @@
-import { IoSearch } from 'react-icons/io5';
+import { PiMagnifyingGlassLight, PiXLight } from 'react-icons/pi';
 
-const Search = ({ debouncedResults }) => {
+const Search = ({ value, onChange }) => {
   return (
-    <div className="relative mt-1 group ">
-      <input type="text" placeholder="Search" onChange={debouncedResults} className="bg-white/20 placeholder:text-white outline-none p-2 lg:px-5 rounded-md  w-full xl:w-96 shadow-black " />
-      <IoSearch className="absolute right-3 top-3 lg:right-3 lg:top-1 lg:w-7 lg:h-7" />
+    <div className="group relative w-full lg:w-80">
+      <label htmlFor="project-search" className="sr-only">
+        Search projects
+      </label>
+
+      <PiMagnifyingGlassLight className="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-white/60 transition-colors duration-500 ease-spring group-focus-within:text-white" />
+
+      <input
+        id="project-search"
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search by name or tech"
+        autoComplete="off"
+        className="h-12 w-full rounded-full bg-white/[0.04] pl-12 pr-12 text-sm text-white outline-none ring-1 ring-white/10 transition-all duration-500 ease-spring placeholder:text-white/35 hover:ring-white/20 focus:bg-white/[0.06] focus:ring-ember/60 [&::-webkit-search-cancel-button]:hidden"
+      />
+
+      {value && (
+        <button
+          type="button"
+          onClick={() => onChange('')}
+          aria-label="Clear search"
+          className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/[0.06] text-white/70 transition-all duration-500 ease-spring hover:bg-white/10 hover:text-white active:scale-95"
+        >
+          <PiXLight className="h-4 w-4" />
+        </button>
+      )}
     </div>
   );
 };

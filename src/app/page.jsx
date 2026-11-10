@@ -1,56 +1,70 @@
-'use client';
-import { sosialLinks } from '@/utils/static';
-import Image from 'next/image';
 import Link from 'next/link';
-import { TiArrowSortedDown } from 'react-icons/ti';
-import { TypeAnimation } from 'react-type-animation';
+import { PiArrowUpRightLight, PiFacebookLogoLight, PiGithubLogoLight, PiInstagramLogoLight, PiLinkedinLogoLight } from 'react-icons/pi';
+
+import HeroPortrait from '@/components/home/HeroPortrait';
+import TypeRole from '@/components/home/TypeRole';
+import { sosialLinks } from '@/utils/static';
+
+const socialIcons = {
+  linkedin: PiLinkedinLogoLight,
+  github: PiGithubLogoLight,
+  facebook: PiFacebookLogoLight,
+  instagram: PiInstagramLogoLight,
+};
+
 const Home = () => {
   return (
-    <section className="flex items-center justify-between flex-col lg:flex-row">
-      <div className="flex flex-col gap-5 lg:gap-10 mt-0 lg:mt-52">
-        <h1 className="font-semibold">Hi ! I'm</h1>
-        <TypeAnimation
-          sequence={[
-            'Website Developer', // Types 'One'
-            2000,
-            '',
-            500,
-            'Website Designer',
-            2000,
-            '',
-          ]}
-          speed={30}
-          wrapper="span"
-          cursor={true}
-          repeat={Infinity}
-          className="text-xl lg:text-6xl"
-        />
-        <h2 className="font-bold text-6xl"></h2>
-        <p className="max-w-lg font-extralight leading-6">
-          I am a Junior Web Developer who is used to developing innovative and responsive web applications using the latest technology. <br /> My main expertise lies in using React as a frontend framework and Node.js Express as a backend
-          framework.
+    <div className="relative z-10 mx-auto grid min-h-[100dvh] w-full max-w-6xl grid-cols-1 items-center gap-12 px-4 pb-32 pt-28 md:px-8 md:pt-36 lg:grid-cols-12 lg:gap-10">
+      {/* Copy */}
+      <div className="flex flex-col lg:col-span-7">
+        <h1 className="animate-rise text-[2.75rem] font-bold leading-[0.98] tracking-tight [animation-delay:80ms] sm:text-6xl xl:text-7xl">
+          Hi, I&apos;m
+          <br />I Nyoman Dharma
+        </h1>
+
+        <p className="mt-5 h-8 animate-rise text-lg text-ember-soft [animation-delay:140ms] md:h-10 md:text-2xl">
+          <TypeRole />
         </p>
 
-        <div className="lg:absolute flex lg:flex-col gap-5  lg:left-20 left-5 bottom-52 self-start ">
-          {sosialLinks.map((social) => {
-            return (
-              <a href={social.url} key={social.name} target="_blank" className="hover:scale-110">
-                <Image src={social.image} height={30} width={30} alt={`${social.name} logo`} />
-              </a>
-            );
-          })}
+        <p className="mt-4 max-w-lg animate-rise text-sm font-extralight leading-relaxed text-white/60 [animation-delay:200ms] md:text-base">
+          A junior web developer building innovative, responsive web apps. I work mainly with React on the frontend and Node.js with Express on the backend.
+        </p>
+
+        <div className="mt-9 flex animate-rise flex-wrap items-center gap-3 [animation-delay:260ms]">
+          <Link href="/project" className="btn-pill btn-pill-ember">
+            View projects
+            <span className="btn-pill-icon">
+              <PiArrowUpRightLight className="h-4 w-4" />
+            </span>
+          </Link>
+          <Link href="/contact" className="inline-flex h-11 items-center rounded-full px-5 text-sm text-white/80 ring-1 ring-white/15 transition-all duration-500 ease-spring hover:bg-white/[0.06] hover:text-white active:scale-[0.98]">
+            Get in touch
+          </Link>
         </div>
 
-        <Link href="/profile" className="font-bold text-white/100 text-3xl self-start flex flex-col items-center gap-2 z-20 " type="button">
-          Explore
-          <TiArrowSortedDown className="w-14 h-14 text-white animate-bounce " />
-        </Link>
+        <ul className="mt-10 flex animate-rise items-center gap-2 [animation-delay:320ms]" aria-label="Social links">
+          {sosialLinks.map(({ name, url }) => {
+            const Icon = socialIcons[name];
+            return (
+              <li key={name}>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={name}
+                  title={name}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white/[0.04] text-white/65 ring-1 ring-white/10 transition-all duration-500 ease-spring hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-white"
+                >
+                  {Icon && <Icon className="h-5 w-5" />}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
-      <div className="hidden 2xl:block">
-        <Image src="/hero.png" height={500} width={500} alt="hero images" className=" absolute bottom-0 right-0 mr-24 -mb-20 " />
-      </div>
-    </section>
+      <HeroPortrait />
+    </div>
   );
 };
 

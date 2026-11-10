@@ -1,14 +1,5 @@
-/* Navbar */
-.header-title {
-  @apply font-bold text-center;
-}
-
-.header-title ~ p {
-  @apply text-center;
-}
-
 .bg-word {
-  @apply hidden lg:inline absolute w-full h-full;
+  @apply pointer-events-none fixed inset-0 hidden overflow-hidden lg:block;
 }
 
 .bg-word > h1 {
@@ -35,60 +26,129 @@
   @apply absolute bottom-52 right-[26rem];
 }
 
-.skills {
-  @apply relative  flex w-[22rem] aspect-square rounded-full -left-36 animate-rotate z-50;
-}
-
 textarea {
   resize: none;
 }
 
-.shadow-black {
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+/* ------------------------------------------------------------------ */
+/* Premium layer (project + contact)                                   */
+/* ------------------------------------------------------------------ */
+
+/* Global background: one crimson glow system shared by every page. */
+.page-glow {
+  @apply pointer-events-none fixed inset-0 -z-10;
+  background:
+    radial-gradient(60rem 40rem at 0% 0%, rgba(149, 1, 1, 0.55), transparent 60%),
+    radial-gradient(50rem 32rem at 100% 0%, rgba(224, 65, 58, 0.16), transparent 60%),
+    radial-gradient(50rem 36rem at 100% 100%, rgba(120, 10, 0, 0.35), transparent 60%),
+    #0a0606;
 }
 
-.skill {
-  transform: translate(calc(20px * var(--i)), calc(5px * var(--i)));
-  transform-origin: calc(20px * var(--i));
+/* Island button with nested trailing icon (button-in-button). */
+.btn-pill {
+  @apply inline-flex h-11 items-center gap-3 rounded-full bg-white py-1 pl-5 pr-1 text-sm font-bold text-[#140808] transition-all duration-500 ease-spring hover:bg-white/90 active:scale-[0.98];
+}
+.btn-pill:not(:has(.btn-pill-icon)) {
+  @apply pr-5;
+}
+.btn-pill-icon {
+  @apply flex h-9 w-9 items-center justify-center rounded-full bg-[#140808]/[0.08] transition-transform duration-500 ease-spring;
+}
+.btn-pill:hover .btn-pill-icon {
+  @apply -translate-y-px translate-x-0.5 scale-105;
+}
+.btn-pill-ember {
+  @apply bg-[#c8322b] text-white shadow-[0_12px_32px_-12px_rgba(200,50,43,0.8),inset_0_1px_1px_rgba(255,255,255,0.25)] hover:bg-[#d23a33];
+}
+.btn-pill-ember .btn-pill-icon {
+  @apply bg-white/15;
 }
 
-.card-active {
-  @apply h-fit pb-5 lg:h-[30rem] w-72 lg:w-96 bg-[#D9D9D9] text-black  rounded-xl  translate-y-10 shadow-black transition-all duration-500 overflow-hidden translate-x-0 absolute;
+/* Scroll reveal: pure CSS (scroll-driven animation), so cards never stay hidden
+   if JavaScript is slow or fails. Browsers without support just show them. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2.5rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up cubic-bezier(0.32, 0.72, 0, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
 }
 
-.card-next {
-  @apply h-fit pb-5 lg:h-[30rem] w-72 lg:w-96 bg-white opacity-30 text-black  rounded-xl translate-x-[70%] -z-10 shadow-black transition-all duration-500 overflow-hidden absolute;
+/* ---------------- Parallax ---------------- */
+
+/* 1. Project screenshots drift against the scroll inside their frame. */
+@keyframes parallax-y {
+  from {
+    transform: translate3d(0, -7%, 0);
+  }
+  to {
+    transform: translate3d(0, 7%, 0);
+  }
+}
+@supports (animation-timeline: view()) {
+  .parallax-media {
+    animation: parallax-y linear both;
+    animation-timeline: view();
+  }
 }
 
-.card-prev {
-  @apply h-fit pb-5 lg:h-[30rem] w-72 lg:w-96 bg-white opacity-30 text-black  rounded-xl  -translate-x-[70%] -z-10 shadow-black transition-all duration-500 overflow-hidden absolute;
+/* 2. Background MARST letters move at different speeds as the page scrolls. */
+@keyframes drift {
+  to {
+    transform: translate3d(0, var(--drift, -120px), 0);
+  }
+}
+@supports (animation-timeline: scroll()) {
+  .bg-word > h1 {
+    animation: drift linear both;
+    animation-timeline: scroll(root);
+  }
+}
+.bg-word .m-word {
+  --drift: -80px;
+}
+.bg-word .a-word {
+  --drift: -220px;
+}
+.bg-word .r-word {
+  --drift: -140px;
+}
+.bg-word .s-word {
+  --drift: -260px;
+}
+.bg-word .t-word {
+  --drift: -110px;
 }
 
-.card-title {
-  @apply p-5 pb-0  flex justify-between;
-}
-.card-title h2 {
-  @apply text-[#3D0000] font-semibold;
-}
-.card-title p {
-  @apply font-extralight;
+/* 3. Pointer parallax layers (Home portrait). --px / --py are set from JS in -1..1. */
+.depth {
+  transform: translate3d(calc(var(--px, 0) * var(--depth) * 1px), calc(var(--py, 0) * var(--depth) * 1px), 0);
+  transition: transform 900ms cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
 }
 
-.card-desc,
-.card-stack {
-  @apply px-5 pt-3;
-}
-.card-desc > p {
-  @apply text-sm font-light line-clamp-2;
-}
-
-.card-stack > div {
-  @apply flex gap-5 flex-wrap mt-2;
-}
-
-.card-link {
-  @apply px-5 flex justify-between font-extralight mt-2;
-}
-.card-link a {
-  @apply flex items-center gap-2 hover:underline w-fit hover:scale-105 transition-all;
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-rise {
+    opacity: 1 !important;
+  }
+  .reveal,
+  .animate-rise,
+  .parallax-media,
+  .bg-word > h1,
+  .depth {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
 }
