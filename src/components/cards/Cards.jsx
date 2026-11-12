@@ -8,7 +8,7 @@ const SIZES = {
 };
 
 const ProjectCard = ({ project, featured = false, priority = false, delay = 0, className = '' }) => {
-  const { name, type, description, stack, demo, code, image } = project;
+  const { name, type, description, stack, demo, code, image, imagePosition } = project;
 
   const wide = className.includes('lg:col-span-12');
   const variant = featured ? 'featured' : wide ? 'wide' : 'default';
@@ -37,7 +37,7 @@ const ProjectCard = ({ project, featured = false, priority = false, delay = 0, c
                   fill
                   sizes={SIZES[variant]}
                   priority={priority}
-                  className={`object-cover ${featured ? 'object-center' : 'object-top'} transition-transform duration-[1400ms] ease-spring group-hover:scale-[1.04]`}
+                  className={`object-cover ${featured ? (imagePosition ?? 'object-center') : 'object-top'} transition-transform duration-[1400ms] ease-spring group-hover:scale-[1.04]`}
                 />
               </div>
             ) : (

@@ -3,6 +3,23 @@
 // Screenshots live in /public/assets/project/screens (landscape, ~1600px wide WebP).
 export const projects = [
   {
+    id: 'nikahin',
+    name: 'Nikah.in',
+    type: 'Web App',
+    description:
+      'A digital wedding invitation platform with Balinese, Javanese, Sundanese and modern themes. Each invitation is one shareable link with background music, photo gallery, countdown, RSVP, map and a digital gift envelope.',
+    stack: ['Next.js', 'TypeScript', 'Tailwindcss', 'MUI', 'GSAP', 'Zustand'],
+    demo: 'https://nikahin.marst.my.id/',
+    code: null, // private repository
+    image: {
+      src: '/assets/project/screens/nikahin-adat.webp',
+      width: 900,
+      height: 1087,
+    },
+    // Portrait screenshot: anchor the crop to the top so the cover photos stay visible in wide frames.
+    imagePosition: 'object-top',
+  },
+  {
     id: 'imgconv',
     name: 'Imgconv',
     type: 'Web App',
